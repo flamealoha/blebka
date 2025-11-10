@@ -1,0 +1,2 @@
+kilogramchiki, metriki = map(float, input("Введите cвой вес и рост в метрах ^_^: ").split())
+print(f"ваш ИМТ 0_0: {kilogramchiki / metriki ** 2:.1f}")
