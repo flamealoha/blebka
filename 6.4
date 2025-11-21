@@ -1,0 +1,9 @@
+x, c = map(int, input("Введите координаты первой клетки: ").split())
+z, v = map(int, input("Введите координаты второй клетки: ").split())
+if (0<= x <= 8) and (0<= z <= 8) and (0<= c <= 8) and (0<= v <= 8):
+    if abs(x - z) == abs(c - v):
+        print("есс)")
+    else:
+        print("ноу(")
+else:
+    print("такой клеточки нет((")
