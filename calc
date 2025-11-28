@@ -1,0 +1,18 @@
+pervoe_chislo = float(input('Введите первое число: '))
+operacia = input('Введите операцию: ')
+vtoroe_chislo = float(input('Введите второе число: '))
+
+match operacia:
+    case '+':
+        print(pervoe_chislo+vtoroe_chislo)
+    case '-':
+        print(pervoe_chislo-vtoroe_chislo)
+    case '*':
+        print(pervoe_chislo*vtoroe_chislo)
+    case '/':
+        if vtoroe_chislo == 0:
+            print('Ошибка')
+        else:
+            print(pervoe_chislo/vtoroe_chislo)
+    case _:
+        print('Ошибка')
