@@ -1,0 +1,37 @@
+A = int(input("Введите первое число: "))
+B = int(input("Введите второе число: "))
+
+#четные
+if A > B:
+    print("""
+          ВВЕДИ НОРМАЛЬНЫЕ ЧИСЛА""")
+else:
+    # четные
+    if A % 2 == 0:
+        a1 = A
+
+    else:
+        a1 = A + 1
+
+    if B % 2 == 0:
+        b2 = B
+    else:
+        b2 = B - 1
+    me = (b2 - a1) // 2 + 1
+    sumch = me * (a1 + b2) // 2
+
+    # нечетные
+    if A % 2 == 1:
+        nachalo = A
+    else:
+        nachalo = A + 1
+
+    if B % 2 == 1:
+        konec = B
+    else:
+        konec = B - 1
+
+    be = (konec - nachalo) // 2 + 1
+    sumne = be * (nachalo + konec) // 2
+
+print(f"разность между суммой четных чисел и суммой нечетных чисел: {sumch - sumne}")
