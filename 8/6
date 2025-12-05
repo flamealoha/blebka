@@ -1,0 +1,18 @@
+import random
+
+print("Попробуйте угадать какое число от 1 до 10 загадала программа")
+chislo = random.randint(1,10)
+
+for i in range(3, 0, -1):
+    polzovotel = chislo
+    polzovotel = int(input("Введте число: "))
+    if polzovotel == chislo:
+        print("Успех, ты супер крут!!!")
+        break
+    elif polzovotel > chislo:
+        print("""ехх, не угадал(((
+        загаданное число меньше""")
+    elif polzovotel < chislo:
+        print("""ехх, не угадал(((
+        загаданное число больше""")
+    print(f"у тебя осталось {i-1} попыток")
