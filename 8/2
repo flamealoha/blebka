@@ -1,0 +1,12 @@
+print("введите 10 целых чисел")
+sum = 0
+for i in range(1,11):
+    x = int(input(f"Введите число №{i}: "))
+    if x % 2 == 0:
+        sum += 1
+    else:
+        sum = sum
+if sum == 10:
+    print("yes")
+else:
+    print("no")
