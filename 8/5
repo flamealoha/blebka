@@ -1,12 +1,18 @@
 n = int(input("Введите количество чисел: "))
-if n < 2:
+
+if n <= 2:
     print("Нужно больше двух чисел")
+
 else:
-    for i in range(1, n + 1):
-        z = int(input(f"Введите число №{i}: "))
-        v = z
-        if z > v:
-            v = z
-        else:
-            v = v
-print(v)
+    first = int(input("Введите число №1: "))
+    second = int(input("Введите число №2: "))
+    if first < second:
+        first, second = second, first
+    for i in range(3, n + 1):
+        num = int(input(f"Введите число №{i}: "))
+        if num > first:
+            second, first = first, num
+        elif num > second:
+            second = num
+print(f"""Наибольшее число из списка: {first}
+второе число: {second}""")
