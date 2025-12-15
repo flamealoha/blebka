@@ -1,0 +1,8 @@
+nachalo = 1
+while True:
+    chislo = int(input("Введите число: "))
+    if chislo > 0:
+        nachalo = nachalo * chislo
+    else:
+        break
+print(f"произведение введённых чисел: {nachalo}")
