@@ -1,0 +1,12 @@
+attempt = 0
+while True:
+    password = input("Введите пароль: ")
+    attempt += 1
+    if password == "admin":
+        print("Добро пожаловать))")
+        break
+    else:
+        print("пароль не верный((")
+    if attempt > 3:
+        print("вы привысили допустимый лимит ошибок")
+        break
