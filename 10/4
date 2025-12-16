@@ -1,0 +1,10 @@
+cost = 0
+while True:
+    sena = int(input("Введите цену товара: "))
+    if sena == 0:
+        break
+    if sena < 0:
+        print("Ошибка цены!!")
+        continue
+    cost = cost + sena
+print(f"общая цена: {cost}")
