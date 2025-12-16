@@ -1,0 +1,12 @@
+while True:
+    name = input()
+    if name == 'Александра':
+        break
+
+count = 0
+while True:
+    name = input()
+    if name == 'Левон':
+        print(count)
+        break
+    count += 1
