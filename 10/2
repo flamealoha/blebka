@@ -1,0 +1,14 @@
+first = int(input("Введите первое число: "))
+while True:
+    second = int(input("Введите второе число: "))
+    if second <= first:
+        print("Второе число должно быть больше первого")
+    else:
+        break
+while True:
+    third = int(input("Введите третье число: "))
+    if third <= second:
+        print("Третье число должно быть больше второго")
+    else:
+        print("Последовательность принята")
+        break
