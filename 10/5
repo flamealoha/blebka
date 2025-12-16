@@ -1,0 +1,24 @@
+balanse = 1000
+while True:
+    print("""
+1. Узнать баланс
+2. Снять 100 руб
+3. Положить 100 руб
+4. Выход""")
+    kommand = input("Введите команду: ")
+    match kommand:
+        case "1":
+            print(f"Ваш текущий баланс: {balanse}")
+        case "2":
+            if balanse > 100:
+                balanse = balanse - 100
+                print("Снято")
+            else:
+                print("на вашем счете недостаточно средств")
+        case "3":
+            balanse = balanse + 100
+        case "4":
+            print("До свидания")
+            break
+        case _:
+            print("Неверная команда")
