@@ -1,0 +1,10 @@
+print("что бы остановить программу введите 0")
+chislo = int(input("Введите число: "))
+
+while True:
+    num = int(input("Введите число: "))
+    if num > chislo:
+        chislo = num
+    if num == 0:
+        break
+print(f"максимальное: {chislo}")
