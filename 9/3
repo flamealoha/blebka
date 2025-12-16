@@ -1,0 +1,27 @@
+price = int(input("Какое минимальное количество чеканных монет нужно заплатить ведьмаку: "))
+
+moneta_25 = 0
+moneta_10 = 0
+moneta_5 = 0
+moneta_1 = 0
+while price >= 25:
+    price -= 25
+    moneta_25 += 1
+
+while price >= 10:
+    price -= 10
+    moneta_10 += 1
+
+while price >= 5:
+    price -= 5
+    moneta_5 += 1
+
+while price >= 1:
+    price -= 1
+    moneta_1 += 1
+
+print(f"""Вы должны ему:
+ {moneta_25} монет по 25
+ {moneta_10} монет по 10
+ {moneta_5} монет по 5
+ {moneta_1} монет по 1""")
