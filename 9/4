@@ -1,0 +1,31 @@
+n = int(input('Ввведите натуральное число: '))
+last_num = n % 10
+kolvo_3 = 0
+kolvo_last_num = 0
+chet = 0
+sum_5 = 0
+proizv_7 = 1
+nalichie_7 = False
+kolvo_0_5 = 0
+while n > 0:
+    d = n % 10
+    if d == 3:
+        kolvo_3 += 1
+    if d == last_num:
+        kolvo_last_num += 1
+    if d % 2 == 0:
+        chet += 1
+    if d > 5:
+        sum_5 += d
+    if d > 7:
+        proizv_7 = proizv_7 * d
+        nalichie_7 = True
+    if d == 0 or d == 5:
+        kolvo_0_5 += 1
+    n //= 10
+print(f'Количество цифр 3: {kolvo_3}')
+print(f'Сколько раз встречается последняя цифра: {kolvo_last_num}')
+print(f'Количество чётных цифр: {chet}')
+print(f'Сумма цифр, больших пяти: {sum_5}')
+print(f'Произведение цифр, больших семи: {proizv_7 if nalichie_7 else 1}')
+print(f'Сколько раз  встречаются цифры 0 и 5: {kolvo_0_5}')
