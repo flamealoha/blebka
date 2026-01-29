@@ -1,0 +1,9 @@
+marks = [5, 4, 3, 5, 2, 5, 4, 3, 5, 5]
+kolvo5 = 0
+kolvo2 = 0
+for mark in marks:
+    if mark == 5:
+        kolvo5 += 1
+    if mark == 2:
+        kolvo2 += 1
+print(kolvo5, kolvo2)
