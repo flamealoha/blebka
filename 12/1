@@ -1,6 +1,4 @@
 n = int(input("Введите число: "))
-nechet = []
 if n >= 1:
-    for i in range(1, n+1, 2):
-        nechet.append(i)
+    nechet = list(range(1, n+1, 2))
 print(nechet)
