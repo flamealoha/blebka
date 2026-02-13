@@ -6,4 +6,5 @@ for mark in marks:
         kolvo5 += 1
     if mark == 2:
         kolvo2 += 1
-print(kolvo5, kolvo2)
+print(f"""количество пятёрок: {kolvo5} 
+количество двоек: {kolvo2}""")
