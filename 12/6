@@ -1,0 +1,5 @@
+polindrom = (list(input("Введите число: ")))
+if polindrom == polindrom[::-1]:
+    print("Это палиндром")
+else:
+    print("ни, не полиндром😭")
