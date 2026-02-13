@@ -1,0 +1,9 @@
+numbers = [10, 20, 30, 40, 50]
+print(numbers)
+num = int(input('Введите число, индекс которого Вы хотите узнать: '))
+if num not in numbers:
+   print('В списке нет такого числа')
+for i in range(len(numbers)):
+   if numbers[i] == num:
+       print(f'Индекс: {i}')
+       break
