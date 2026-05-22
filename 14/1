@@ -1,0 +1,7 @@
+import random
+
+spisok = []
+for i in range(10):
+    spisun = [random.randint(1,10) for li in range(10)]
+    spisok.append(spisun)
+print(spisok)
