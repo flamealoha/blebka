@@ -1,0 +1,6 @@
+n = int(input("Введите число натуральное:"))
+simvol = []
+for i in range(n):
+    a = input("Ведите содиржимое строчки: ")
+    simvol.extend(list(a))
+print(simvol)
