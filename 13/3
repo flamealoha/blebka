@@ -1,0 +1,4 @@
+strochka = input("Введите текст:")
+strochechki = strochka.split("\\")
+for bebe in strochechki:
+    print(bebe)
