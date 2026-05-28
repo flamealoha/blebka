@@ -1,0 +1,17 @@
+stroka = input("Введите АЙПИ адрес:")
+aipi = stroka.split('.')
+
+if len(aipi) == 4:
+    pravelno = True
+    for chislo_str in aipi:
+        chislo = int(chislo_str)
+        if chislo < 0 or chislo > 255:
+            pravelno = False
+            break
+
+    if pravelno:
+        print("ДА")
+    else:
+        print("НЕТ")
+else:
+    print("НЕТ")
