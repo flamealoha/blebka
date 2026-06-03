@@ -1,0 +1,170 @@
+import turtle
+t = turtle.Turtle()
+t.speed(0)
+t.hideturtle()
+screen = turtle.Screen()
+screen.bgcolor("lightblue")
+screen.setup(width=800, height=700)
+# =====================================================
+# ПАРА 1 — СОЛНЫШКО
+# =====================================================
+COLOR_SUB = 'yellow'
+WIDTH_LUCHI = 6
+COUNT_LUCHI = 16
+UGOL_LUCHI = 22.5
+COLOR_LUCHI = 'orange'
+WIDTH_CONTUR = 1
+SIZE_CIRCLE = 50
+DLINA_LUCHI = 90
+
+def sun(x1, y1, x2, y2):
+    t.color(COLOR_LUCHI)
+    t.width(WIDTH_LUCHI)
+    for i in range(COUNT_LUCHI):
+        t.penup()
+        t.goto(x1, y1)
+        t.pendown()
+        t.setheading(i * UGOL_LUCHI)
+        t.forward(DLINA_LUCHI)
+    t.width(WIDTH_CONTUR)
+    t.penup()
+    t.goto(x2, y2)
+    t.pendown()
+    t.color(COLOR_SUB)
+    t.begin_fill()
+    t.circle(SIZE_CIRCLE)
+    t.end_fill()
+
+
+sun(300, 300, 280, 247)
+
+# =====================================================
+# ПАРА 2 — ОБЛАКО
+# =====================================================
+COLOR_CLOUD = "White"
+def oblaka(x,y):
+    coords = [
+        (100, 280, 40),
+        (70, 290, 30),
+        (130, 290, 30),
+        (50, 270, 25),
+        (150, 270, 25),
+        (100, 260, 35),
+    ]
+    t.penup()
+    t.goto(x,y)
+    t.color(COLOR_CLOUD)
+    for circle_x, circle_y, radius in coords:
+        t.penup()
+        t.goto(x + circle_x, y + circle_y - radius)
+        t.pendown()
+        t.begin_fill()
+        t.circle(radius)
+        t.end_fill()
+oblaka(-300,50)
+oblaka(-100,50)
+oblaka(200,70)
+
+HEART_COLOR = "red"
+PEREVERTISH = 140
+#ДЕКОР
+def decor(x, y):
+    t.penup()
+    t.goto(x, y)
+    t.setheading(PEREVERTISH)
+    t.pendown()
+    t.color(HEART_COLOR)
+    t.begin_fill()
+    t.circle(-35, 200)
+    t.left(120)
+    t.circle(-35, 200)
+    t.forward(62)
+    t.end_fill()
+decor(-300, 50)
+decor(200, 50)
+
+# НАДПИСЬ
+TEXT_1 = "С 8 Марта!"
+TEXT_2 = "Дорогие женщины!"
+TEXT_3 = "Пусть каждый день будет ярким!"
+TEXT_POS = "center"
+MAIN_FONT_SIZE_1 = ("Arial", 36, "bold")
+MAIN_FONT_SIZE_2 = ("Arial", 20, "italic")
+MAIN_FONT_SIZE_3 = ("Arial", 20, "normal")
+COLOR_TEXT_1 = "purple"
+COLOR_TEXT_2 = "deeppink"
+COLOR_TEXT_3 = "blue"
+def nadpis(x1, y1, x2, y2, x3, y3):
+    t.penup()
+    t.goto(x1, y1)
+    t.pendown()
+    t.color(COLOR_TEXT_1)
+    t.write(TEXT_1, align = TEXT_POS, font = MAIN_FONT_SIZE_1)
+    t.penup()
+    t.goto(x2, y2)
+    t.pendown()
+    t.color(COLOR_TEXT_2)
+    t.write(TEXT_2, align = TEXT_POS, font=MAIN_FONT_SIZE_2)
+    t.penup()
+    t.goto(x3, y3)
+    t.color(COLOR_TEXT_3)
+    t.write(TEXT_3, align = TEXT_POS, font=MAIN_FONT_SIZE_3)
+nadpis(0, 31, 0,15,0,-5)
+
+
+# =====================================================
+# ПАРА 3 — ЦВЕТОК
+# =====================================================
+STEBEL_COLOR = "darkgreen"
+CVETOK_COLOR = "pink"
+CENTER_COLOR = "yellow"
+def cvetok(x, y):
+    t.color(STEBEL_COLOR)
+    t.width(4)
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.setheading(90)
+    t.forward(120)
+    t.width(1)
+    t.color(CVETOK_COLOR)
+    for i in range(8):
+        t.penup()
+        t.goto(0, -180)
+        t.pendown()
+        t.setheading(i * 45)
+        t.begin_fill()
+        t.circle(30, 180)
+        t.circle(30, 180)
+        t.end_fill()
+    t.penup()
+    t.goto(0, -180)
+    t.pendown()
+    t.color(CENTER_COLOR)
+    t.begin_fill()
+    t.circle(20)
+    t.end_fill()
+cvetok(0, -300)
+COLOR_TRAVA = "green"
+START_X = -400
+START_Y = -350
+BLADE_COUNT =  10
+TRAVA_RANGE = 80
+TRAVA_FORWARD = 10
+BLADE_CIRCLE = 70
+
+t.color(COLOR_TRAVA)
+for i in range(TRAVA_RANGE):
+    t.penup()
+    t.goto(START_X + i * BLADE_COUNT, START_Y)
+    t.pendown()
+    d = 1 if i % 2 == 0 else -1
+    t.setheading(75 + (i % 5) * 10)
+    t.width(3 - (i % 2))
+    n = BLADE_CIRCLE + (i % 30)
+    for j in range(int(n / 10)):
+        t.forward(TRAVA_FORWARD)
+        t.left(5 * d)
+    t.width(1)
+
+turtle.done()
