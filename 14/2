@@ -1,1 +1,27 @@
+import random
 
+matrica = []
+for i in range(3):
+    stroka = [random.randint(1, 10) for j in range(4)]
+    matrica.append(stroka)
+
+print("Список: ")
+for stroka in matrica:
+    print(stroka)
+
+summa = 0
+max_summa = -1
+nomer_strokii = 0
+
+for i in range(len(matrica)):
+    summa_stroki = sum(matrica[i])
+    print(f"Сумма строки {i} = {summa_stroki}")
+
+    summa += summa_stroki
+
+    if summa_stroki > max_summa:
+        max_summa = summa_stroki
+        nomer_strokii = i
+
+print(f"Сумма вообще всех чисел: {summa}")
+print(f"Строка с самой большой суммой: {nomer_strokii}")
