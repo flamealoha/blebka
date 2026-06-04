@@ -1,0 +1,160 @@
+import turtle
+import math
+
+# Настройка экрана
+screen = turtle.Screen()
+screen.setup(800, 600)
+screen.bgcolor("#87CEEB")  # Голубое небо
+screen.title("Летящая пчелка")
+screen.tracer(0)  # Отключаем автоматическую анимацию
+
+# Создаем черепаху для пчелки
+bee = turtle.Turtle()
+bee.speed(0)
+bee.penup()
+
+# Функция рисования пчелки
+def draw_bee(x, y, angle):
+    bee.clear()
+    bee.goto(x, y)
+    bee.setheading(angle)
+    
+    # Тело (желтый эллипс)
+    bee.pendown()
+    bee.color("black", "#FFD700")  # Желтый цвет
+    bee.begin_fill()
+    for _ in range(2):
+        bee.circle(15, 90)
+        bee.circle(5, 90)
+    bee.end_fill()
+    bee.penup()
+    
+    # Полоски на теле
+    bee.goto(x + 5, y - 5)
+    bee.pendown()
+    bee.color("black")
+    bee.pensize(3)
+    bee.setheading(angle + 90)
+    bee.forward(15)
+    bee.penup()
+    
+    bee.goto(x - 5, y + 5)
+    bee.pendown()
+    bee.setheading(angle + 90)
+    bee.forward(15)
+    bee.penup()
+    
+    # Голова
+    bee.goto(x + 20, y + 5)
+    bee.pendown()
+    bee.color("black", "#FFD700")
+    bee.begin_fill()
+    bee.circle(8)
+    bee.end_fill()
+    bee.penup()
+    
+    # Глаз
+    bee.goto(x + 23, y + 10)
+    bee.pendown()
+    bee.color("white")
+    bee.begin_fill()
+    bee.circle(3)
+    bee.end_fill()
+    bee.penup()
+    
+    bee.goto(x + 24, y + 11)
+    bee.pendown()
+    bee.color("black")
+    bee.begin_fill()
+    bee.circle(1.5)
+    bee.end_fill()
+    bee.penup()
+    
+    # Крылья (полупрозрачные - рисуем синим)
+    bee.goto(x + 10, y + 15)
+    bee.pendown()
+    bee.color("lightblue")
+    bee.begin_fill()
+    bee.circle(12, 180)
+    bee.end_fill()
+    bee.penup()
+    
+    bee.goto(x + 10, y - 10)
+    bee.pendown()
+    bee.begin_fill()
+    bee.circle(12, 180)
+    bee.end_fill()
+    bee.penup()
+    
+    # Жало
+    bee.goto(x - 15, y)
+    bee.pendown()
+    bee.color("black")
+    bee.pensize(2)
+    bee.setheading(angle - 180)
+    bee.forward(8)
+    bee.penup()
+
+# Параметры полета
+x_pos = -400  # Начальная позиция слева
+y_pos = 0
+angle = 0
+wave_amplitude = 50  # Амплитуда волны
+wave_frequency = 0.05
+time = 0
+speed = 5
+
+# Дополнительные элементы: цветы (статические)
+def draw_flower(x, y):
+    flower = turtle.Turtle()
+    flower.speed(0)
+    flower.penup()
+    flower.goto(x, y)
+    flower.pendown()
+    flower.color("green")
+    flower.pensize(3)
+    flower.setheading(270)
+    flower.forward(30)
+    flower.color("#FF69B4")
+    flower.begin_fill()
+    for _ in range(6):
+        flower.circle(10)
+        flower.left(60)
+    flower.end_fill()
+    flower.color("#FFD700")
+    flower.begin_fill()
+    flower.circle(5)
+    flower.end_fill()
+    flower.hideturtle()
+
+# Рисуем несколько цветов
+draw_flower(300, -150)
+draw_flower(200, -180)
+draw_flower(-200, -170)
+draw_flower(-100, -200)
+
+# Основной цикл анимации
+while x_pos < 500:
+    # Движение по синусоиде (волнообразный полет)
+    y_pos = math.sin(time * 10) * wave_amplitude
+    angle = math.sin(time * 15) * 20  # Наклон пчелки
+    
+    # Рисуем пчелку в новой позиции
+    draw_bee(x_pos, y_pos, angle)
+    
+    # Обновляем экран
+    screen.update()
+    
+    # Двигаем пчелку вперед
+    x_pos += speed
+    time += 0.1
+    
+    # Небольшая задержка для плавности
+    turtle.time.sleep(0.02)
+
+# Пчелка улетела
+bee.clear()
+bee.goto(0, 0)
+bee.write("Пчелка улетела!", align="center", font=("Arial", 24, "bold"))
+
+screen.exitonclick()
