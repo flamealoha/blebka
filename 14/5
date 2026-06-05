@@ -1,0 +1,11 @@
+print("сколько места у вас в рюкзаке? ")
+N = int(input("-"))
+predmeti = list(map(int, input("введите цену каждого предмета через пробел: ").split()))
+predmeti.sort(reverse=True)
+max_razmer = 0
+for i in range(min(N, len(predmet))):
+    if predmet[i] > 0:
+        max_razmer += predmeti[i]
+    else:
+        break
+print(max_razmer)
