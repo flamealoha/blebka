@@ -1,0 +1,15 @@
+class Zombie:
+    def __init__(self, name, hp):
+        self.name = name
+        self.hp = hp
+
+    def bite(self, damage):
+        self.hp -= damage
+        return self.hp
+
+
+z1 = Zombie("Мясник", 100)
+
+sila_ukusa = int(input("Введите силу укуса: "))
+skolko_hp = z1.bite(sila_ukusa)
+print(f"Остаток здоровья: {skolko_hp}")
