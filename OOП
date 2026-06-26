@@ -1,0 +1,213 @@
+import random
+
+class Monster:
+    def __init__(self, name, hp, dmg):
+        self.__name = name
+        self.__hp = hp
+        self.__dmg = dmg
+    
+    def get_name(self):
+        return self.__name
+
+    def get_hp(self):
+        return self.__hp
+
+    def take_damage(self, damage):
+        self.set_hp(self.__hp - damage)
+
+    def get_dmg(self):
+        return self.__dmg
+
+    def set_hp(self, value):
+        if value < 0:
+            self.__hp = 0
+            print("Ошибка: Здоровье не может быть отрицательным")
+        else:
+            self.__hp = value
+
+    def is_alive(self):
+        return self.__hp > 0
+
+    def show_status(self):
+        print(f"-------Статус--------")
+        print(f"Имя: {self.__name}")
+        print(f"HP: {self.__hp}")
+        print("---------------------")
+
+class Weapon:
+    def __init__(self, name, dmg):
+        self.name = name
+        self.dmg = dmg
+
+    def use(self, monster):
+        monster.take_damage(self.dmg)
+
+class Hunter:
+    def __init__(self, name, hp=100):
+        self.__name = name
+        self.__hp = hp
+        self.__weapons = []
+
+    def get_name(self):
+        return self.__name
+    
+    def get_hp(self):
+        return self.__hp
+
+    def set_hp(self, value):
+        if value < 0:
+            self.__hp = 0
+            print("Ошибка: Здоровье не может быть отрицательным")
+        else:
+            self.__hp = value
+
+    def add_weapon(self, weapon):
+        self.__weapons.append(weapon)
+        print(f"В инвениарь охотника {self.__name} добавлен(а) {weapon.name}")
+
+    def show_inventory(self):
+        print(f"--- Инвентарь охотника {self.__name} ---")
+        if not self.__weapons:
+            print("Инвентарь пуст")
+            return
+        
+        number = 1
+        for weapon in self.__weapons:
+            print(f"{number}) {weapon.name} (урон: {weapon.dmg})")
+            number += 1
+
+    def attack(self, weapon_index, monster):
+        if 0 <= weapon_index - 1 < len(self.__weapons):
+            selected_weapon = self.__weapons[weapon_index - 1]
+            print(f"\n{self.__name} атакует монстра {monster.get_name()}, используя {selected_weapon.name}!")
+            selected_weapon.use(monster)
+            return True
+        else:
+            print("Ошибка: Неверный индекс оружия!")
+            return False
+    
+    def is_alive(self):
+        return self.__hp > 0
+
+class Zombie(Monster):
+    def __init__(self, name, hp=120, dmg=10):
+        super().__init__(name, hp, dmg)
+
+    def take_damage(self, damage):
+        super().take_damage(damage)
+        print(f"Зомби теряет конечность! Получено: {damage}. HP: {self.get_hp()}")
+        
+class Vampire(Monster):
+    def __init__(self, name, hp=80, dmg=15):
+        super().__init__(name, hp, dmg)
+    
+    def take_damage(self, damage):
+        actual_damage = damage - 5
+        if actual_damage < 0:
+            actual_damage = 0
+        
+        super().take_damage(actual_damage)
+        print(f"Дракула поглощает 5 урона! Получено: {actual_damage}. HP: {self.get_hp()}")
+
+class Ghost(Monster):
+    def __init__(self, name, hp=60, dmg=20):
+        super().__init__(name, hp, dmg)
+    
+    def take_damage(self, damage):
+        ghost_miss = random.randint(1,100)
+        if ghost_miss <= 30:
+            super().take_damage(0)
+            print(f"Призрак увернулся! Получено: {damage}. HP: {self.get_hp()}")
+        else:
+            super().take_damage(damage)
+            print(f"Призрак не увернулся! Получено: {damage}. HP: {self.get_hp()}")
+
+class Werewolf(Monster):
+    def __init__(self, name, hp=100, dmg=25):
+        super().__init__(name, hp, dmg)
+    
+    def take_damage(self, damage):
+        super().take_damage(damage)
+        if self.get_hp() < 50:
+            print(f"Оборотень трансформируется! Получено: {damage}. HP: {self.get_hp()}")
+        else:
+            print(f"Оборотень теряет здоровье! Получено: {damage}. HP: {self.get_hp()}")
+
+class SilverSword(Weapon):
+    def __init__(self, name="Серебряный меч", dmg=30):
+        super().__init__(name, dmg)
+
+    def use(self, monster):
+        print(f"Взмахом серебрянного меча, охотник наносит монстру увечия")
+        super().use(monster)
+    
+class HolyWater(Weapon):
+    def __init__(self, name="Святая вода", dmg=20):
+        super().__init__(name, dmg)
+
+    def use(self, monster):
+        print(f"Охотник разбрызгивает святую воду оставляя на монстре ожоги")
+        super().use(monster)
+        
+class CrossbowBolt(Weapon):
+    def __init__(self, name="Арбалет с болтом", dmg=25):
+        super().__init__(name, dmg)
+
+    def use(self, monster):
+        print(f"Выстрел из арбалета пробивает цель")
+        super().use(monster)
+        
+
+def run_game():
+    print("\n=== НАЧАЛО БИТВЫ ===")
+    
+    hunter = Hunter("Ван Хельсинг", hp=100)
+    hunter.add_weapon(SilverSword())
+    hunter.add_weapon(HolyWater())
+    hunter.add_weapon(CrossbowBolt())
+    
+    monsters = [
+        Zombie("зомбу"), 
+        Vampire("Граф Фаликула"), 
+        Ghost("Дух Бешбармака"), 
+        Werewolf("Люкан")
+    ]
+    
+    for monster in monsters:
+        if not hunter.is_alive():
+            break
+            
+        print(f"\n======================================")
+        print(f"На вашем пути появляется: {monster.get_name()}!")
+        print(f"======================================")
+
+        while monster.is_alive() and hunter.is_alive():
+            monster.show_status()
+            hunter.show_inventory()
+
+            try:
+                choice = int(input(f"Выберите номер оружия для атаки (1-3): "))
+            except ValueError:
+                print("Пожалуйста, введите число.")
+                continue
+        
+            if not hunter.attack(choice, monster):
+                continue
+
+            if monster.is_alive():
+                print(f"\n{monster.get_name()} контратакует и наносит {monster.get_dmg()} урона!")
+                new_hanter_hp = hunter.get_hp() - monster.get_dmg()
+                hunter.set_hp(new_hanter_hp)
+                print(f"У охотника {hunter.get_name()} осталось HP: {hunter.get_hp()}")
+            else:
+                print(f"\nВы повергли чудовище {monster.get_name()}!")
+
+    print("\n======================================")
+    if hunter.is_alive():
+        print(f"ПОБЕДА! {hunter.get_name()} очистил эти земли от скверны!")
+    else:
+        print("ПОРАЖЕНИЕ... Тьма поглотила великого охотника.")
+    print("======================================")
+
+if __name__ == "__main__":
+    run_game()
